@@ -5,7 +5,7 @@ from colles.models import colleur,colle,creneau, eleve, programme
 from colles.fonctions import *
 #from colles.forms import essai
 #from .forms import essai
-from django_ajax.decorators import ajax
+#from django_ajax.decorators import ajax
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from django.conf.urls.static import static
