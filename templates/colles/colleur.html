@@ -1,0 +1,48 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+{% block javascript %}
+  <script>
+$(document).ready(function(){
+    $("input").change(function () {
+      console.log( $(this).attr("id") )
+      $.ajax({
+        method:"POST",
+        url: "ajax/entrenote/",
+        data: {'colle':$(this).attr("id"), 'note':$(this).val()},
+        dataType:'json'
+        })
+    });
+});
+  </script>
+{% endblock %}
+
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 2px;
+</style>
+        
+        <h2> Colles de {{colleur}}</h2>
+        <form>{% csrf_token %}
+        <table border-spacing="1px">
+        <tr><th>Semaine</th><th>Date</th><th>Groupe</th><th>Élèves</th><th>Note</th>
+        </tr>
+        {% for k,v in t1.items %}
+        <tr>
+        <td rowspan="{{v.nelvs}}" align="center">
+    {% if v.prog %}
+          <a href="{{v.prog}}"> {{v.semaine}} </a>
+    {% else %}{{v.semaine}} 
+    {% endif %}
+       </td>
+        <td rowspan="{{v.nelvs}}"> {{v.date}} </td>
+        <td rowspan="{{v.nelvs}}" align="center"> {{v.groupe}}</td>
+        {% for e in v.elvs.items %}
+          <td>{{e.1.0}}</td><td><input type="text" size="2" id="{{v.id}}|{{e.0}}" value={{e.1.1}}></td></tr>
+        {% endfor %}
+        {% endfor %}
+        </table>
+    </form> 
+{% endblock %}

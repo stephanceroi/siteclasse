@@ -1,0 +1,46 @@
+<html>
+<style type="text/css">
+div#bandeau {
+    float:left;
+    width:200px;
+    height:500px;
+    background-color:#F0F0F0;
+}
+div#corps {
+    margin-left:210px;
+     background-color:#F0FFFF;
+    }
+</style>
+<body>
+  
+
+    <div class="page-header">
+        <h1>Site de la PCSI du Lycée Schweitzer</h1>
+
+    </div>
+    <div id="bandeau">
+    Programmes de colle
+    <ul>
+     {% for k,v in divers.items %}
+      <li> {% if v %}<a href="{{v}}">Semaine {{k}}</a>
+           {% else %}Semaine {{k}}
+           {% endif %}
+     </li>
+     {% endfor %}
+    </ul>  
+    
+    <a href="colloscope">Colloscope</a><br>
+    <a href="logout">Déconnexion</a>        
+    </div>
+    <div id="corps">
+        <div class="row">
+            <div class="col-md-8">
+            {% block content %}
+            {% endblock %}
+            </div>
+        </div>
+    </div>
+  
+     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>    
+ 
